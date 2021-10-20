@@ -9,6 +9,7 @@ export default function generateGrid (ySize, xSize) {
     for (let x = 0; x < xSize; x++) {
       // adding rows to cols
       const newRowEl = document.createElement('div');
+      newRowEl.setAttribute('id', `${y}${x}`);
       newColEl.appendChild(newRowEl);
     }
 
