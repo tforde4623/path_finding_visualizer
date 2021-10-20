@@ -1,10 +1,8 @@
+import generateGrid from './generateGrid.js';
+
 window.onload = function () {
   console.log('hello world')
-  generateGrid(); 
+  generateGrid(10, 10); 
 };
 
-function generateGrid (ySize, xSize) {
-  // generate rows by ySize and cols by xSize
-  const mainGrid = document.querySelector('#main__visualizer');
-  mainGrid.setAttribute('style', 'background-color: red;')
-};
+
