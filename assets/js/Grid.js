@@ -18,7 +18,6 @@ export default class Grid {
     for (let i = 0; i < ySize * xSize; i++) {
       const newColEl = document.createElement('div');
       newColEl.setAttribute('class', 'grid__item');
-      newColEl.innerText = 'x'; //tmp content
 
       // generate ids w/ counters
       let tmpId = `${counterY},${counterX}`;

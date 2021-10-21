@@ -7,8 +7,16 @@ window.onload = function () {
   const generatedMatrixClone = mainGrid.makeMatrixClone();
 
   mainGrid.changeItemSize(30);
-  dfsAlgo(0, 7, generatedMatrixClone, mainGrid.genMatrixItemIds);
+  dfsAlgo(0, 0, generatedMatrixClone, mainGrid.genMatrixItemIds, 50);
 };
+
+/* 
+TODOS:
+1. fix resizing so it will automatically resize the sqaure size, and the grid size, to fill
+its area...
+
+2. add descriptions for the algorithms? maybe?
+*/
 
 
 

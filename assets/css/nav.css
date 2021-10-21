@@ -1,0 +1,7 @@
+nav {
+  height: 100px;
+  width: 100%;
+  display: fixed;
+  background-color: orange;
+  margin-bottom: 10px;
+}
