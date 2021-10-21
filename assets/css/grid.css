@@ -1,1 +1,16 @@
-@import './grid.css'
+#main__visualizer {
+  display: grid;
+  /* can we make the template auto for resizing? or change it based on size in js? */
+  grid-template-columns: repeat(10, 15px);
+  grid-template-rows: repeat(10, 15px);
+  grid-gap: 1px;
+}
+
+.grid__item {
+  /* dynamic?? */
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background: white;
+  border: 1px solid grey;
+}
