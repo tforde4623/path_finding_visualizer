@@ -3,6 +3,9 @@ export default class Grid {
     this.ySize = ySize;
     this.xSize = xSize;
     this.selectedGrid = selectedGrid;
+
+    // gen grid (with given y & x to start)
+    this.generateGrid();
   }
 
   generateGrid(y, x) {
@@ -39,5 +42,32 @@ export default class Grid {
     // grid items are square
     this.selectedGrid.style.gridTemplateRows = `repeat(${this.ySize}, ${pxs}px)`;
     this.selectedGrid.style.gridTemplateColumns = `repeat(${this.xSize}, ${pxs}px)`;
+  }
+
+  genMatrixItemIds (i, j, speed) {
+    // needed id is "0,1" (ex. "0,10") i = 0, j = 10
+    setTimeout(() => {
+      const tmpId = `${i},${j}`;
+      const tmpEl = document.getElementById(tmpId);
+
+      tmpEl.style.backgroundColor = "limegreen";
+    }, speed);
+  }
+
+  // method for generating a usable matrix from grid dimensions
+  makeMatrixClone () {
+    const matrix = [];
+
+    for (let i = 0; i < this.ySize; i++) {
+      const tmpRow = [];
+
+      for (let j = 0; j < this.xSize; j++) {
+        tmpRow.push('x');
+      }
+
+      matrix.push(tmpRow);
+    }
+
+    return matrix;
   }
 }
