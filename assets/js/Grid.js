@@ -9,6 +9,21 @@ export default class Grid {
     this.generateGrid();
   }
 
+  static calculateItemNumber(divSizeY, divSizeX, squareSize) {
+    const ySize = divSizeY / squareSize;
+    const xSize = divSizeX / squareSize;
+
+    return [ySize, xSize];
+  }
+
+  static init(gridEl, squareSize = 20) {
+    const [y, x] = this.calculateItemNumber(480, 720, squareSize);
+    const grid = new Grid(y, x, gridEl);
+
+    grid.changeItemSize(squareSize);
+    return grid;
+  }
+
   generateGrid(y, x) {
     this.selectedGrid.innerHTML = '';
     const ySize = y ? y : this.ySize;
@@ -51,10 +66,14 @@ export default class Grid {
 
     function timeout() {
       return new Promise((resolve, reject) => {
-        const tto = setTimeout(() => {
-          tmpEl.style.backgroundColor = "limegreen";
-        }, speed);
-        resolve(tto);
+        try {
+          const tmpTimeout = setTimeout(() => {
+            tmpEl.style.backgroundColor = "limegreen";
+          }, speed);
+          resolve(tmpTimeout);
+        } catch (e) {
+          reject(e);
+        }
       });
     }
 
@@ -64,17 +83,13 @@ export default class Grid {
   // method for generating a usable matrix from grid dimensions
   makeMatrixClone() {
     const matrix = [];
-
     for (let i = 0; i < this.ySize; i++) {
       const tmpRow = [];
-
       for (let j = 0; j < this.xSize; j++) {
         tmpRow.push('x');
       }
-
       matrix.push(tmpRow);
     }
-
     return matrix;
   }
 
