@@ -32,10 +32,10 @@ export default function traverseMatrix (startCol, startRow, matrixClone, cb, spe
 function getNeighbors(matrix, col, row) {
   const res = [];
 
-  if (col + 1 < matrix.length) res.push([col + 1, row]);
   if (row + 1 < matrix[col].length) res.push([col, row + 1]);
-  if (col - 1 >= 0) res.push([col - 1, row]);
   if (row - 1 >= 0) res.push([col, row - 1]);
+  if (col + 1 < matrix.length) res.push([col + 1, row]);
+  if (col - 1 >= 0) res.push([col - 1, row]);
 
   return res;
 }

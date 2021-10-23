@@ -3,6 +3,7 @@ export default class Grid {
     this.ySize = ySize;
     this.xSize = xSize;
     this.selectedGrid = selectedGrid;
+    this.currTimeout = [];
 
     // gen grid (with given y & x to start)
     this.generateGrid();
@@ -26,7 +27,7 @@ export default class Grid {
         counterX = 0;
         counterY++;
       }
-  
+
       // add that div with id to grid
       newColEl.setAttribute('id', tmpId);
       this.selectedGrid.appendChild(newColEl);
@@ -43,18 +44,25 @@ export default class Grid {
     this.selectedGrid.style.gridTemplateColumns = `repeat(${this.xSize}, ${pxs}px)`;
   }
 
-  genMatrixItemIds (i, j, speed) {
+  genMatrixItemIds = (i, j, speed) => {
     // needed id is "0,1" (ex. "0,10") i = 0, j = 10
-    setTimeout(() => {
-      const tmpId = `${i},${j}`;
-      const tmpEl = document.getElementById(tmpId);
+    const tmpId = `${i},${j}`;
+    const tmpEl = document.getElementById(tmpId);
 
-      tmpEl.style.backgroundColor = "limegreen";
-    }, speed);
+    function timeout() {
+      return new Promise((resolve, reject) => {
+        const tto = setTimeout(() => {
+          tmpEl.style.backgroundColor = "limegreen";
+        }, speed);
+        resolve(tto);
+      });
+    }
+
+    timeout().then(tmp => this.currTimeout.push(tmp));
   }
 
   // method for generating a usable matrix from grid dimensions
-  makeMatrixClone () {
+  makeMatrixClone() {
     const matrix = [];
 
     for (let i = 0; i < this.ySize; i++) {
@@ -68,5 +76,14 @@ export default class Grid {
     }
 
     return matrix;
+  }
+
+  clearColor() {
+    const items = document.querySelectorAll('.grid__item');
+    items.forEach(node => node.style.backgroundColor = 'white');
+
+    if (this.currTimeout.length) {
+      this.currTimeout.forEach(timeout => clearTimeout(timeout));
+    }
   }
 }
