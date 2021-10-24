@@ -93,12 +93,28 @@ export default class Grid {
     return matrix;
   }
 
-  clearColor() {
+  clearColorAlgo() {
     const items = document.querySelectorAll('.grid__item');
-    items.forEach(node => node.style.backgroundColor = 'white');
+    items.forEach(node => {
+      if (node.style.backgroundColor !== 'black') {
+        node.style.backgroundColor = 'white';
+      }
+    });
 
     if (this.currTimeout.length) {
       this.currTimeout.forEach(timeout => clearTimeout(timeout));
+    }
+  }
+
+  clearAllColors(matrix) {
+    const items = document.querySelectorAll('.grid__item');
+    items.forEach(node => node.style.backgroundColor = 'white');
+
+    // make the matrix full of x again..
+    for (let row in matrix) {
+      for (let col in matrix[row]) {
+        if (matrix[row][col] !== 'x') matrix[row][col] = 'x';
+      }
     }
   }
 }

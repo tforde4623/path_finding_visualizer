@@ -1,4 +1,4 @@
-export default function traverseMatrix (startCol, startRow, matrixClone, cb, speedBase=10) {
+export default function traverseMatrix(startCol, startRow, matrixClone, cb, speedBase = 10) {
   const startNode = [startCol, startRow];
   const queue = [];
   const visited = new Set();
@@ -23,7 +23,7 @@ export default function traverseMatrix (startCol, startRow, matrixClone, cb, spe
       const strNeighbor = `${neighbor[0]},${neighbor[1]}`;
       if (!visited.has(strNeighbor)) {
         visited.add(strNeighbor);
-        queue.push(neighbor); 
+        queue.push(neighbor);
       }
     });
   }
@@ -32,10 +32,17 @@ export default function traverseMatrix (startCol, startRow, matrixClone, cb, spe
 function getNeighbors(matrix, col, row) {
   const res = [];
 
-  if (row + 1 < matrix[col].length) res.push([col, row + 1]);
-  if (row - 1 >= 0) res.push([col, row - 1]);
-  if (col + 1 < matrix.length) res.push([col + 1, row]);
-  if (col - 1 >= 0) res.push([col - 1, row]);
+  if (row + 1 < matrix[col].length &&
+    matrix[col][row + 1] == 'x') res.push([col, row + 1]);
+
+  if (row - 1 >= 0 &&
+    matrix[col][row - 1] == 'x') res.push([col, row - 1]);
+
+  if (col + 1 < matrix.length &&
+    matrix[col + 1][row] == 'x') res.push([col + 1, row]);
+
+  if (col - 1 >= 0 &&
+    matrix[col - 1][row] == 'x') res.push([col - 1, row]);
 
   return res;
 }

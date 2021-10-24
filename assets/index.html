@@ -1,31 +1,41 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <title>Path Finding</title>
-    <link rel="stylesheet" href="./css/index.css">
-  </head>
+<head>
+  <title>Path Finding</title>
+  <link rel="stylesheet" href="./css/index.css">
+</head>
 
-  <body>
-    <!-- will have a nav (for options and such) -->
-    <header>
-      <nav id="main__nav">
-        <select id="size_selector">
-          <option value="10">10</option>
-          <option value="20" selected>20</option>
-          <option value="30">30</option>
-          <option value="40">40</option>
-        </select>
-        <button id="start_btn">Start</button>
-      </nav>
-    </header>
-    
-    <!-- main grid for visualizing algorithms -->
-    <section class="visualizer__section">
-      <div id="main__visualizer"></div>
-    </section>
+<body>
+  <!-- will have a nav (for options and such) -->
+  <header>
+    <nav id="main__nav">
+      <label for="size_selector">Node Size</label>
+      <select name="size_selector" id="size_selector">
+        <option value="10">10</option>
+        <option value="20" selected>20</option>
+        <option value="30">30</option>
+        <option value="40">40</option>
+      </select>
 
-    <script type="module" src="./js/main.js"></script>
-  </body>
+      <label for="speed_selector">Algo Speed</label>
+      <select name="speed_selector" id="speed_selector">
+        <option value="8">1</option>
+        <option value="5">2</option>
+        <option value="3" selected>3</option>
+        <option value="1">4</option>
+      </select>
+      <button id="start_btn">Start</button>
+      <button id="reset">Reset</button>
+    </nav>
+  </header>
+
+  <!-- main grid for visualizing algorithms -->
+  <section class="visualizer__section">
+    <div id="main__visualizer"></div>
+  </section>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
 
 </html>
