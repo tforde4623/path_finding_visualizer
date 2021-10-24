@@ -19,7 +19,7 @@ window.onload = function () {
       const speedVal = document.getElementById('speed_selector').value;
 
       grid.clearColorAlgo();
-      bfsAlgo(5, 5, matrix, grid.genMatrixItemIds, speedVal);
+      bfsAlgo(0, 0, matrix, grid.genMatrixItemIds, speedVal, 10, 10);
     });
 
   // logic for handling drawing of walls
