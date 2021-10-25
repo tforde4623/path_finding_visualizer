@@ -5,6 +5,7 @@ window.onload = function () {
   const getGrid = document.querySelector('#main__visualizer');
   let grid = Grid.init(getGrid);
   let matrix = grid.makeMatrixClone();
+  let finishPoint;
 
   document.querySelector('#size_selector')
     .addEventListener('change', e => {
@@ -19,7 +20,7 @@ window.onload = function () {
       const speedVal = document.getElementById('speed_selector').value;
 
       grid.clearColorAlgo();
-      bfsAlgo(0, 0, matrix, grid.genMatrixItemIds, speedVal, 10, 10);
+      finishPoint = bfsAlgo([0, 0], matrix, grid.genMatrixItemIds, speedVal, [15, 15]);
     });
 
   // logic for handling drawing of walls
@@ -28,7 +29,7 @@ window.onload = function () {
     getGrid.addEventListener('mouseover', logWalls)
   });
 
-  getGrid.addEventListener('mouseup', e => {
+  getGrid.addEventListener('mouseup', () => {
     getGrid.removeEventListener('mouseover', logWalls);
   });
 
@@ -41,6 +42,7 @@ window.onload = function () {
     .addEventListener('click', () => {
       grid.clearColorAlgo();
       grid.clearAllColors(matrix);
+      clearInterval(finishPoint['interval']);
     });
 
   function logWalls(e) {
@@ -56,8 +58,6 @@ window.onload = function () {
     }
   }
 };
-
-
 
 /*
 TODOS:

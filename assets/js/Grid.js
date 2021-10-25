@@ -68,7 +68,7 @@ export default class Grid {
       return new Promise((resolve, reject) => {
         try {
           const tmpTimeout = setTimeout(() => {
-            tmpEl.style.backgroundColor = "limegreen";
+            tmpEl.style.backgroundColor = "magenta";
           }, speed);
           resolve(tmpTimeout);
         } catch (e) {

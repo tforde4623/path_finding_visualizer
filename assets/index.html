@@ -10,23 +10,27 @@
   <!-- will have a nav (for options and such) -->
   <header>
     <nav id="main__nav">
-      <label for="size_selector">Node Size</label>
-      <select name="size_selector" id="size_selector">
-        <option value="10">10</option>
-        <option value="20" selected>20</option>
-        <option value="30">30</option>
-        <option value="40">40</option>
-      </select>
+      <div id="btn_cluster">
+        <button id="start_btn">Start</button>
+        <button id="reset">Reset</button>
+      </div>
+      <div id="setting_selectors">
+        <label for="size_selector">Node Size</label>
+        <select name="size_selector" id="size_selector">
+          <option value="10">10px</option>
+          <option value="20" selected>20px</option>
+          <option value="30">30px</option>
+          <option value="40">40px</option>
+        </select>
 
-      <label for="speed_selector">Algo Speed</label>
-      <select name="speed_selector" id="speed_selector">
-        <option value="8">1</option>
-        <option value="5">2</option>
-        <option value="3" selected>3</option>
-        <option value="1">4</option>
-      </select>
-      <button id="start_btn">Start</button>
-      <button id="reset">Reset</button>
+        <label for="speed_selector">Algo Speed</label>
+        <select name="speed_selector" id="speed_selector">
+          <option value="8">1</option>
+          <option value="5">2</option>
+          <option value="3" selected>3</option>
+          <option value="1">4</option>
+        </select>
+      </div>
     </nav>
   </header>
 

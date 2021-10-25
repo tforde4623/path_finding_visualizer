@@ -1,5 +1,6 @@
-export default function traverseMatrix(startRow, startCol, matrixClone, cb, speedBase = 10, endRow, endCol) {
-  const startNode = [startRow, startCol];
+export default function traverseMatrix(startNode, matrixClone, cb, speedBase = 10, endNode) {
+  const [endRow, endCol] = endNode;
+  const [startRow, startCol] = startNode;
   const queue = [];
   const visited = new Set();
   let speedCounter = 1;
@@ -18,19 +19,15 @@ export default function traverseMatrix(startRow, startCol, matrixClone, cb, spee
 
     if (currNode[0] == endRow && currNode[1] == endCol) {
       // change the end node to some other color if found (gross flashing yellow code)
-      let blinker;
-      setTimeout(() => {
-        blinker = setInterval(() => {
+      const blinker = setInterval(() => {
+        document.getElementById(`${currNode[0]},${currNode[1]}`)
+          .style.backgroundColor = 'blue';
+        setTimeout(() => {
           document.getElementById(`${currNode[0]},${currNode[1]}`)
-            .style.backgroundColor = 'yellow';
-          setTimeout(() => {
-            document.getElementById(`${currNode[0]},${currNode[1]}`)
-              .style.backgroundColor = 'limegreen';
-          }, 100);
-        }, 400);
+            .style.backgroundColor = 'magenta';
+        }, 200);
       }, speedCounter * speedBase);
 
-      // path is available, return speed so we can do something after last node is changed
       return { counter: speedCounter * speedBase, interval: blinker };
     }
 
@@ -47,7 +44,7 @@ export default function traverseMatrix(startRow, startCol, matrixClone, cb, spee
   }
 
   // if gets though all, return false
-  return false;
+  return { counter: speedCounter * speedBase, status: false };
 }
 
 function getNeighbors(matrix, row, col) {

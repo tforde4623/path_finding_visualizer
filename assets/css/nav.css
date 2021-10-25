@@ -1,7 +1,13 @@
 nav {
   height: 100px;
   width: 100%;
-  display: fixed;
-  background-color: orange;
+  background-color: darkgrey;
   margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+#size_selector, #speed_selector {
+  margin: 0 10px;
 }
