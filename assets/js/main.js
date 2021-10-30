@@ -1,5 +1,6 @@
 import Grid from './Grid.js';
-import bfsAlgo from './algorithms/bfs.js';
+// import bfsAlgo from './algorithms/bfs.js';
+import bfsPath from './algorithms/simplePathFinder.js';
 
 window.onload = function () {
   const getGrid = document.querySelector('#main__visualizer');
@@ -20,7 +21,9 @@ window.onload = function () {
       const speedVal = document.getElementById('speed_selector').value;
 
       grid.clearColorAlgo();
-      finishPoint = bfsAlgo([0, 0], matrix, grid.genMatrixItemIds, speedVal, [15, 15]);
+      //finishPoint = bfsAlgo([0, 0], matrix, grid.genMatrixItemIds, speedVal, [15, 15]);
+      finishPoint = bfsPath(matrix, [1, 1], [20, 20], grid.genMatrixItemIds, speedVal); // matrixclone, start[y,x], end[y,x]
+
     });
 
   // logic for handling drawing of walls
@@ -42,7 +45,9 @@ window.onload = function () {
     .addEventListener('click', () => {
       grid.clearColorAlgo();
       grid.clearAllColors(matrix);
-      clearInterval(finishPoint['interval']);
+      if (finishPoint['interval']) {
+        clearInterval(finishPoint['interval']);
+      }
     });
 
   function logWalls(e) {
